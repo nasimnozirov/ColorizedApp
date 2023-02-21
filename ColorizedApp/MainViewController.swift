@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  ColorizedApp
 //
 //  Created by Nasim Nozirov on 19.02.2023.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
-     let colorView: UIView = {
+    let colorView: UIView = {
         let colorView = UIView()
         colorView.backgroundColor = .green
         colorView.translatesAutoresizingMaskIntoConstraints = false
         return colorView
     }()
-
-   private let redLabel: UILabel = {
+    
+    private let redLabel: UILabel = {
         let label = UILabel()
         label.text = "Red:"
         label.textAlignment = .left
@@ -43,28 +43,28 @@ class ViewController: UIViewController {
         return label
     }()
     
-    private let horizontalStackViewLabelName: UIStackView = {
+    private let verticalStackViewLabelName: UIStackView = {
         let verticalStackView = UIStackView()
         verticalStackView.alignment = .fill
         verticalStackView.distribution = .fill
         verticalStackView.axis = .vertical
         verticalStackView.spacing = 40
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        return verticalStackView
+        return         verticalStackView
     }()
     
     private let redLabelNumber: UILabel = {
-         let label = UILabel()
-         label.text = "Red:"
-         label.textAlignment = .left
-         label.backgroundColor = .black
-         label.translatesAutoresizingMaskIntoConstraints = false
-         return label
-     }()
+        let label = UILabel()
+        label.text = "0.00"
+        label.textAlignment = .left
+        label.backgroundColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     private let greenLabelNumber: UILabel = {
         let label = UILabel()
-        label.text = "Green:"
+        label.text = "0.00"
         label.textAlignment = .left
         label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,21 +73,21 @@ class ViewController: UIViewController {
     
     private let blueLabelNumber: UILabel = {
         let label = UILabel()
-        label.text = "Blue:"
+        label.text = "0.00"
         label.textAlignment = .left
         label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let horizontalStackViewLabelNumber: UIStackView = {
-        let horizontalStackView = UIStackView()
-        horizontalStackView.alignment = .fill
-        horizontalStackView.distribution = .fill
-        horizontalStackView.axis = .vertical
-        horizontalStackView.spacing = 40
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        return horizontalStackView
+    private let verticalStackViewLabelNumber: UIStackView = {
+        let verticalStackView = UIStackView()
+        verticalStackView.alignment = .fill
+        verticalStackView.distribution = .fill
+        verticalStackView.axis = .vertical
+        verticalStackView.spacing = 40
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStackView
     }()
     
     private let redSlider: UISlider = {
@@ -123,14 +123,14 @@ class ViewController: UIViewController {
         return slider
     }()
     
-    private let horizontalStackViewSlider: UIStackView = {
-        let horizontalStackView = UIStackView()
-        horizontalStackView.alignment = .fill
-        horizontalStackView.distribution = .fill
-        horizontalStackView.axis = .vertical
-        horizontalStackView.spacing = 30
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        return horizontalStackView
+    private let verticalStackViewSlider: UIStackView = {
+        let verticalStackView = UIStackView()
+        verticalStackView.alignment = .fill
+        verticalStackView.distribution = .fill
+        verticalStackView.axis = .vertical
+        verticalStackView.spacing = 30
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStackView
     }()
     
     
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
         horizontalStackView.alignment = .fill
         horizontalStackView.distribution = .fill
         horizontalStackView.axis = .horizontal
-        horizontalStackView.spacing = 30
+        horizontalStackView.spacing = 14
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         return horizontalStackView
     }()
@@ -150,32 +150,92 @@ class ViewController: UIViewController {
         installConstraints()
     }
     private func addElementInStackView() {
-        horizontalStackViewLabelName.addArrangedSubview(redLabel)
-        horizontalStackViewLabelName.addArrangedSubview(greenLabel)
-        horizontalStackViewLabelName.addArrangedSubview(blueLabel)
-        horizontalStackViewLabelNumber.addArrangedSubview(redLabelNumber)
-        horizontalStackViewLabelNumber.addArrangedSubview(greenLabelNumber)
-        horizontalStackViewLabelNumber.addArrangedSubview(blueLabelNumber)
-        horizontalStackViewSlider.addArrangedSubview(redSlider)
-        horizontalStackViewSlider.addArrangedSubview(greenSlider)
-        horizontalStackViewSlider.addArrangedSubview(blueSlider)
-        horizontalStackView.addArrangedSubview(horizontalStackViewLabelName)
-        horizontalStackView.addArrangedSubview(horizontalStackViewLabelNumber)
-        horizontalStackView.addArrangedSubview(horizontalStackViewSlider)
+        verticalStackViewLabelName.addArrangedSubview(redLabel)
+        verticalStackViewLabelName.addArrangedSubview(greenLabel)
+        verticalStackViewLabelName.addArrangedSubview(blueLabel)
+        verticalStackViewLabelNumber.addArrangedSubview(redLabelNumber)
+        verticalStackViewLabelNumber.addArrangedSubview(greenLabelNumber)
+        verticalStackViewLabelNumber.addArrangedSubview(blueLabelNumber)
+        verticalStackViewSlider.addArrangedSubview(redSlider)
+        verticalStackViewSlider.addArrangedSubview(greenSlider)
+        verticalStackViewSlider.addArrangedSubview(blueSlider)
+        horizontalStackView.addArrangedSubview(verticalStackViewLabelName)
+        horizontalStackView.addArrangedSubview(verticalStackViewLabelNumber)
+        horizontalStackView.addArrangedSubview(verticalStackViewSlider)
     }
-
+    
     private func installConstraints() {
         NSLayoutConstraint.activate([
             colorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             colorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            colorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 20),
+            colorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             colorView.heightAnchor.constraint(equalTo: colorView.heightAnchor),
             
-            horizontalStackView.topAnchor.constraint(equalTo: colorView.bottomAnchor, constant: 50),
+            horizontalStackView.topAnchor.constraint(equalTo: colorView.bottomAnchor, constant: -50),
             horizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            horizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 20),
-            horizontalStackViewLabelName.widthAnchor.constraint(equalTo: horizontalStackViewLabelName.widthAnchor, constant: 52),
-            horizontalStackViewLabelNumber.widthAnchor.constraint(equalTo: horizontalStackViewLabelNumber.widthAnchor, constant: 52)
+            horizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            
+            verticalStackViewLabelName.widthAnchor.constraint(equalToConstant: 52),
+            verticalStackViewLabelName.heightAnchor.constraint(equalToConstant: 141),
+            verticalStackViewLabelName.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
+            verticalStackViewLabelName.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
+            
+            redLabel.widthAnchor.constraint(equalToConstant: 52),
+            redLabel.heightAnchor.constraint(equalToConstant: 21),
+            redLabel.trailingAnchor.constraint(equalTo: verticalStackViewLabelName.trailingAnchor),
+            redLabel.topAnchor.constraint(equalTo: verticalStackViewLabelName.topAnchor),
+            
+            greenLabel.widthAnchor.constraint(equalToConstant: 52),
+            greenLabel.heightAnchor.constraint(equalToConstant: 21),
+            greenLabel.trailingAnchor.constraint(equalTo: verticalStackViewLabelName.trailingAnchor),
+            greenLabel.topAnchor.constraint(equalTo: verticalStackViewLabelName.topAnchor),
+            
+            blueLabel.widthAnchor.constraint(equalToConstant: 52),
+            blueLabel.heightAnchor.constraint(equalToConstant: 21),
+            blueLabel.trailingAnchor.constraint(equalTo: verticalStackViewLabelName.trailingAnchor),
+            blueLabel.topAnchor.constraint(equalTo: verticalStackViewLabelName.topAnchor),
+        
+            verticalStackViewLabelNumber.widthAnchor.constraint(equalToConstant: 35),
+            verticalStackViewLabelNumber.heightAnchor.constraint(equalToConstant: 141),
+            verticalStackViewLabelNumber.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
+            verticalStackViewLabelNumber.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
+            
+            redLabelNumber.widthAnchor.constraint(equalToConstant: 35),
+            redLabelNumber.heightAnchor.constraint(equalToConstant: 21),
+            redLabelNumber.trailingAnchor.constraint(equalTo: verticalStackViewLabelNumber.trailingAnchor),
+            redLabelNumber.topAnchor.constraint(equalTo: verticalStackViewLabelNumber.topAnchor),
+            
+            greenLabelNumber.widthAnchor.constraint(equalToConstant: 35),
+            greenLabelNumber.heightAnchor.constraint(equalToConstant: 21),
+            greenLabelNumber.trailingAnchor.constraint(equalTo: verticalStackViewLabelNumber.trailingAnchor),
+            greenLabelNumber.topAnchor.constraint(equalTo: verticalStackViewLabelNumber.topAnchor),
+            
+            blueLabelNumber.widthAnchor.constraint(equalToConstant: 35),
+            blueLabelNumber.heightAnchor.constraint(equalToConstant: 21),
+            blueLabelNumber.trailingAnchor.constraint(equalTo: verticalStackViewLabelNumber.trailingAnchor),
+            blueLabelNumber.topAnchor.constraint(equalTo: verticalStackViewLabelNumber.topAnchor),
+            
+            verticalStackViewSlider.widthAnchor.constraint(equalToConstant: 279),
+            verticalStackViewSlider.heightAnchor.constraint(equalToConstant: 141),
+            verticalStackViewSlider.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
+            verticalStackViewSlider.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
+            
+            redSlider.widthAnchor.constraint(equalToConstant: 279),
+            redSlider.heightAnchor.constraint(equalToConstant: 31),
+            redSlider.trailingAnchor.constraint(equalTo: verticalStackViewSlider.trailingAnchor),
+            redSlider.topAnchor.constraint(equalTo: verticalStackViewSlider.topAnchor),
+            
+            greenSlider.widthAnchor.constraint(equalToConstant: 279),
+            greenSlider.heightAnchor.constraint(equalToConstant: 31),
+            greenSlider.trailingAnchor.constraint(equalTo: verticalStackViewSlider.trailingAnchor),
+            greenSlider.topAnchor.constraint(equalTo: verticalStackViewSlider.topAnchor),
+            
+            blueSlider.widthAnchor.constraint(equalToConstant: 279),
+            blueSlider.heightAnchor.constraint(equalToConstant: 31),
+            blueSlider.trailingAnchor.constraint(equalTo: verticalStackViewSlider.trailingAnchor),
+            blueSlider.topAnchor.constraint(equalTo: verticalStackViewSlider.topAnchor),
+            
+            
         ])
     }
 }
