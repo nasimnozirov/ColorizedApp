@@ -174,6 +174,7 @@ class MainViewController: UIViewController{
     }
     
     private func installConstraints() {
+        
         NSLayoutConstraint.activate([
             colorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             colorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
